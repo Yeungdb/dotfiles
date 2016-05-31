@@ -7,7 +7,7 @@ else
    P_USERS="users"
 fi
 
-ROOT_FS="/dev/sda1"
+ROOT_FS="/dev/sda3"
 HOME_FS="?"
 BACKUP_FS="?"
 
@@ -17,7 +17,7 @@ ROOT=`df -Ph | grep $ROOT_FS | awk '{print $4}' | tr -d '\n'`
 HOME=`df -Ph | grep $HOME_FS | awk '{print $4}' | tr -d '\n'`
 BACKUP=`df -Ph | grep $BACKUP_FS | awk '{print $4}' | tr -d '\n'`
 
-MEMORY1=`free -t -m | grep "buffers/cache" | awk '{print $3" MB";}'`
+MEMORY1=`free -t -m | grep "Mem:" | awk '{print $3" MB";}'`
 MEMORY2=`free -t -m | grep "Mem" | awk '{print $2" MB";}'`
 SWAP=`free -m | tail -n 1 | awk '{print $3}'`
 PSA=`ps -Afl | wc -l`
@@ -34,7 +34,7 @@ fi
 
 DATE=$(date +"%H:%M, %a %b %d, %Y")
 
-RELEASE=`lsb_release -d -s`
+RELEASE=`lsb_release -si`
  
 #System uptime
 uptime=`cat /proc/uptime | cut -f1 -d.`
@@ -49,14 +49,30 @@ LOAD5=`cat /proc/loadavg | awk {'print $2'}`
 LOAD15=`cat /proc/loadavg | awk {'print $3'}`
 
 ASCIIART="
-
- #     #                             
- #     # ###### #      #       ####  
- #     # #      #      #      #    # 
- ####### #####  #      #      #    # 
- #     # #      #      #      #    # 
- #     # #      #      #      #    # 
- #     # ###### ###### ######  #### 
+      ------------..
+        ''........\$\$\$\$.
+         /'.' \$;\$   '\$\$.
+        !./'..\$;\$..  '\$\$
+        !'.\$;;;;;;;\$. \$\$
+        ' \$;;;;;;;;;\$ \$\$
+          \$;; ;;;;;;\$ \$\$
+          \$;; ;;;;;;\$ \$\$
+          \$;; ;;;;;;\$ \$\$
+          \$;; ;;;;;;\$ \$\$
+          \$;; ;;;;;;\$ \$\$
+          \$;; ;;;;;;\$ \$\$
+          \$;; ;;;;;;\$ \$\$
+          \$;; ;;;;;;\$ \$\$.
+          \$;; ;;;;;;\$ '\$\$
+          \$;; ;;;;;;\$
+          \$;; ;;;;;;\$
+          \$;;;;;;;;;\$
+          dp;;;;;;;;\$
+           '\$\$\$\$\$\$\$'
+ ..................................
+ !    Pull pin, Press lever,      !
+ ! Direct spray at base of flames !
+ !................................!
 
 "
 

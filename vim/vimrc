@@ -124,6 +124,10 @@ augroup mySyntastic
   au FileType tex let b:syntastic_mode = "passive"
 augroup END
 
+" ----- Python 2.7 and 3.5 Syntastic Toggle -----
+" ----- Silent -> Not show command
+map <silent><F7> :let g:syntastic_python_python_exec='/usr/bin/python2.7'<CR> :echo "Python2.7 Mode"<CR>
+map <silent><F8> :let g:syntastic_python_python_exec='/usr/bin/python3.5'<CR> :echo "Python3.5 Mode"<CR>
 
 " ----- xolox/vim-easytags settings -----
 " Where to look for tags files
@@ -159,6 +163,21 @@ augroup mydelimitMate
   au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
 augroup END
 
+" ----- Graphical Up and Down with Wrapped Text -- Darien -----
+noremap <silent><F9> :call ToggleGLines()<CR>
+function! ToggleGLines()
+   if &wrap
+      echo "Turning G Up and Down Off"
+      silent! nunmap <buffer> k
+      silent! nunmap <buffer> j 
+      setlocal nowrap
+   else
+      echo "Turning G Up and Down On"
+      noremap <buffer> <silent> k gk
+      noremap <buffer> <silent> j gj
+      setlocal wrap
+   endif
+endfunction
 
 
 " ----- Normal stuff -- Oliver ----- 
